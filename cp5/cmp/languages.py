@@ -139,28 +139,7 @@ class PowHulk:
             G['Y']: ContainerSet(G['-'], G[')'], G.EOF, G['+'] , contains_epsilon=False),
             G['Z']: ContainerSet(G['-'], G['*'], G['/'], G[')'], G.EOF, G['+'] , contains_epsilon=False)
         }
-    @property
-    def tokenizer(self):
-        G = self.G
-        fixed_tokens = self.fixed_tokens
-
-        def tokenize_text(text):
-            tokens = []
-            for item in text.split():
-                try:
-                    float(item)
-                    token = Token(item, G['num'])
-                except ValueError:
-                    try:
-                        token = fixed_tokens[item]
-                    except:
-                        token = UnknownToken(item)
-                tokens.append(token)
-            eof = Token('$', G.EOF)
-            tokens.append(eof)
-            return tokens
-
-        return tokenize_text
+   
 
 class Regex:
     def __init__(self, G):
