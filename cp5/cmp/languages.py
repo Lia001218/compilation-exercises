@@ -93,7 +93,6 @@ class BasicHulk:
 class PowHulk:
     def __init__(self, G):
         self.G = G
-        self.fixed_tokens = { lex: Token(lex, G[lex]) for lex in '+ - * / ( ) ^ '.split() }
 
     @property
     def firsts(self):
@@ -139,7 +138,6 @@ class PowHulk:
             G['Y']: ContainerSet(G['-'], G[')'], G.EOF, G['+'] , contains_epsilon=False),
             G['Z']: ContainerSet(G['-'], G['*'], G['/'], G[')'], G.EOF, G['+'] , contains_epsilon=False)
         }
-   
 
 class Regex:
     def __init__(self, G):
